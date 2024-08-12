@@ -15,11 +15,12 @@
   <body>
     <div class="app">
       <header>
-        <form class="search-form">
+        <form class="search-form" id="search">
           <input
             type="search"
             placeholder="Enter a city"
             required
+            id="input"
             class="search-form-input"
           />
           <input type="submit" value="Search" class="search-form-button" />
@@ -28,11 +29,11 @@
       <main>
         <div class="app-data">
           <div>
-            <h1 class="app-city">Barberton</h1>
+            <h1 class="app-city" id="app-city">Barberton</h1>
             <p class="app-details">
-              Monday 14:01 Sunny
+              Monday 14:01, Sunny
               <br />
-              Humidity: <strong>16%</strong>, Wind: <strong>13km/h</strong>
+              Humidity: <strong>57%</strong>, Wind: <strong>13km/h</strong>
             </p>
           </div>
           <div class="app-temp-container">
@@ -55,5 +56,6 @@
         <a href="https://rhandzu.netlify.app/" target="_blank"> on Netlify</a>
       </footer>
     </div>
+    <script src="src/index.js"></script>
   </body>
 </html>
