@@ -13,23 +13,34 @@
     <title>Rhandzu App</title>
   </head>
   <body>
-    <div class="weather-app">
+    <div class="app">
       <header>
-        <form action="">
-          <input type="search" placeholder="Enter a city" required />
-          <input type="submit" value="Search" />
+        <form class="search-form">
+          <input
+            type="search"
+            placeholder="Enter a city"
+            required
+            class="search-form-input"
+          />
+          <input type="submit" value="Search" class="search-form-button" />
         </form>
       </header>
       <main>
-        <div>
-          <h1>Barberton</h1>
-          <p>
-            Monday 14:01 Sunny
-            <br />
-            Humidity: 57%, Wind: 13km/h
-          </p>
+        <div class="app-data">
+          <div>
+            <h1 class="app-city">Barberton</h1>
+            <p class="app-details">
+              Monday 14:01 Sunny
+              <br />
+              Humidity: <strong>16%</strong>, Wind: <strong>13km/h</strong>
+            </p>
+          </div>
+          <div class="app-temp-container">
+            <div class="app-icon">☀️</div>
+            <div class="app-temp-value">16</div>
+            <div class="app-unit">℃</div>
+          </div>
         </div>
-        <div>☀️ 16℃</div>
       </main>
       <footer>
         Coded by
