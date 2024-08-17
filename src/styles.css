@@ -71,18 +71,19 @@ main {
 }
 
 .app-icon {
-  font-size: 45px;
-  margin-top: 20px;
+  font: 90px;
+  height: 100px;
 }
 
 .app-temp-value {
   font-size: 80px;
   margin-left: 10px;
+  line-height: 90px;
   font-weight: bold;
 }
 
 .app-unit {
-  margin-top: 12px;
+  margin-top: 6px;
   font-size: 25px;
 }
 footer {
