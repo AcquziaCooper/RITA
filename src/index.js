@@ -16,6 +16,8 @@ function updateWeather(response) {
   timeElement.innerHTML = formatDate(date);
   temperatureElement.innerHTML = Math.round(temperature);
   iconElement.innerHTML = `<img src="${response.data.condition.icon_url}" class="app-icon" />`;
+
+  getForecast(response.data.city);
 }
 
 function formatDate(date) {
@@ -41,7 +43,7 @@ function formatDate(date) {
 
 function searchCity(city) {
   let apiKey = "faa1b7a84c09e076f6304e2co3ba683t";
-  let apiUrl = `https://api.shecodes.io/weather/v1/current?query=${city}&key=${apiKey}&unit=metric`;
+  let apiUrl = `https://api.shecodes.io/weather/v1/current?query=${city}&key=${apiKey}&units=metric`;
   axios.get(apiUrl).then(updateWeather);
 }
 
@@ -52,20 +54,38 @@ function submitSearch(event) {
   searchCity(searchInput.value);
 }
 
-function displayForecast() {
+function formartDay(timestamp) {
+  let date = new Date(timestamp * 1000);
+  let days = ["Sun", "Mon", "Tue", "Wed", "Thur", "Fri", "Sat"];
+
+  return days[date.getDay()];
+}
+
+function getForecast(city) {
+  let apiKey = "faa1b7a84c09e076f6304e2co3ba683t";
+  let apiUrl = `https://api.shecodes.io/weather/v1/forecast?query=${city}&key=${apiKey}&units=metric`;
+  axios.get(apiUrl).then(displayForecast);
+
+  console.log(apiUrl);
+}
+
+function displayForecast(response) {
   let forecastElement = document.querySelector("#forecast");
 
-  let days = ["Mon", "Tue", "Wed", "Thur", "Fri", "Sat"];
   let forecastHtml = "";
 
-  days.forEach(function (day) {
-    forecastHtml =
-      forecastHtml +
-      ` <div class="weather-days">
-            <div class="weather-date">${day}</div>
-            <div class="weather-icon">🌤️</div>
-            <div class="weather-unit"><strong>11℃</strong>/ 23℃</div>
+  response.data.daily.forEach(function (day, index) {
+    if (index < 6) {
+      forecastHtml =
+        forecastHtml +
+        ` <div class="weather-days">
+            <div class="weather-date">${formartDay(day.time)}</div>
+            <img src="${day.condition.icon_url}" class="app-icon" />
+            <div class="weather-unit"><strong>${Math.round(
+              day.temperature.minimum
+            )}℃</strong>/ ${Math.round(day.temperature.maximum)}℃</div>
           </div>`;
+    }
   });
 
   forecastElement.innerHTML = forecastHtml;
@@ -75,4 +95,3 @@ let searchFormElement = document.querySelector("#search");
 searchFormElement.addEventListener("submit", submitSearch);
 
 searchCity("Barberton");
-displayForecast();
