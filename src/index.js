@@ -52,7 +52,27 @@ function submitSearch(event) {
   searchCity(searchInput.value);
 }
 
+function displayForecast() {
+  let forecastElement = document.querySelector("#forecast");
+
+  let days = ["Mon", "Tue", "Wed", "Thur", "Fri", "Sat"];
+  let forecastHtml = "";
+
+  days.forEach(function (day) {
+    forecastHtml =
+      forecastHtml +
+      ` <div class="weather-days">
+            <div class="weather-date">${day}</div>
+            <div class="weather-icon">🌤️</div>
+            <div class="weather-unit"><strong>11℃</strong>/ 23℃</div>
+          </div>`;
+  });
+
+  forecastElement.innerHTML = forecastHtml;
+}
+
 let searchFormElement = document.querySelector("#search");
 searchFormElement.addEventListener("submit", submitSearch);
 
 searchCity("Barberton");
+displayForecast();
